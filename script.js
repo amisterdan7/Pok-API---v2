@@ -1,3 +1,4 @@
+
 const input = document.querySelector("#inputPokemon");
 const botao = document.querySelector("#btnBuscar");
 
@@ -8,12 +9,15 @@ const tipos = document.querySelector("#tipos");
 const stats = document.querySelector("#stats");
 const erro = document.querySelector("#erro");
 
+//  EVENTO 
 botao.addEventListener("click", buscarPokemon);
 
+// FUNÇÃO PRINCIPAL 
 async function buscarPokemon() {
   const valor = input.value.trim().toLowerCase();
 
-  if (valor === "") {
+  // VaLIDAÇÃO
+  if (!valor) {
     mostrarErro("Digite um nome ou ID.");
     return;
   }
@@ -21,8 +25,12 @@ async function buscarPokemon() {
   limparTela();
 
   try {
-    const resposta = await fetch(`https://pokeapi.co/api/v2/pokemon/${valor}`);
+    
+    const url = `https://pokeapi.co/api/v2/pokemon/${valor}`;
 
+    const resposta = await fetch(url);
+
+    // VERIFICAR ERRO HTTP
     if (!resposta.ok) {
       throw new Error("Pokémon não encontrado");
     }
@@ -30,46 +38,49 @@ async function buscarPokemon() {
     const dados = await resposta.json();
 
     mostrarPokemon(dados);
+
   } catch (e) {
     mostrarErro(e.message);
   }
 }
 
+// MOSTRAR POKÉMON 
 function mostrarPokemon(dados) {
   nome.textContent = dados.name;
 
-  // Imagem (melhor qualidade)
-  imagem.src = dados.sprites.other["official-artwork"].front_default;
+  // IMAGEM (HD)
+  imagem.src = dados.sprites.other['official-artwork'].front_default;
 
-  // Limpar tipos
+  //  TIPOS
   tipos.innerHTML = "";
-
-  dados.types.forEach((tipoInfo) => {
+  dados.types.forEach(tipoInfo => {
     const span = document.createElement("span");
     span.textContent = tipoInfo.type.name;
     tipos.appendChild(span);
   });
 
-  // mostrar status
+  // STATS
   stats.innerHTML = "<h3>Stats:</h3>";
-
-  dados.stats.forEach((stat) => {
+  dados.stats.forEach(stat => {
     const p = document.createElement("p");
     p.textContent = `${stat.stat.name}: ${stat.base_stat}`;
     stats.appendChild(p);
   });
 
+  // MOSTRAR RESULTADO
   areaResultado.classList.remove("oculto");
 }
 
+// MOSTRAR ERRO 
 function mostrarErro(msg) {
   erro.textContent = msg;
   erro.classList.remove("oculto");
 }
 
+//LIMPAR TELA 
 function limparTela() {
   areaResultado.classList.add("oculto");
   erro.classList.add("oculto");
   tipos.innerHTML = "";
-  stats.innerHTML = ""; // limpar stats também
+  stats.innerHTML = "";
 }

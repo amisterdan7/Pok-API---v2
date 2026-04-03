@@ -6,44 +6,55 @@
 }
 
 body {
-  background: linear-gradient(135deg, #ff1c1c, #b30000);
+  background: linear-gradient(135deg, #ff1c1c, #7a0000);
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 10px;
 }
 
 /* CONTAINER */
 .container {
   background: #fff;
   width: 100%;
-  max-width: 350px;
+  max-width: 400px;
   padding: 20px;
   border-radius: 20px;
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  border: 5px solid #000;
+  border: 6px solid #000;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+/* LUZES DA POKEDEX */
+.container::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, #00e5ff, #0066ff);
+  border-radius: 50%;
+  border: 4px solid #000;
 }
 
 /* TÍTULO */
 h1 {
   color: #ff1c1c;
   margin-bottom: 15px;
-  font-size: 22px;
 }
 
 /* BUSCA */
 .busca {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  gap: 5px;
   margin-bottom: 15px;
 }
 
 input {
   padding: 10px;
-  width: 100%;
+  width: 70%;
   border: 2px solid #000;
   border-radius: 10px;
   font-weight: bold;
@@ -51,6 +62,7 @@ input {
 
 button {
   padding: 10px;
+  width: 30%;
   background: #ffcc00;
   border: 2px solid #000;
   border-radius: 10px;
@@ -60,25 +72,92 @@ button {
 }
 
 button:hover {
-  background: #ffdb4d;
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
 /* IMAGEM */
 #resultado img {
-  width: 140px;
-  margin: 10px 0;
+  width: 180px;
+  animation: aparecer 0.5s ease;
+}
+
+@keyframes aparecer {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 /* TIPOS */
 #tipos span {
   display: inline-block;
-  margin: 4px;
-  padding: 5px 10px;
+  margin: 5px;
+  padding: 6px 12px;
   border-radius: 20px;
-  background: #333;
   color: white;
   font-size: 12px;
+}
+
+/* CORES DOS TIPOS */
+.fire {
+  background: #f08030;
+}
+.water {
+  background: #6890f0;
+}
+.grass {
+  background: #78c850;
+}
+.electric {
+  background: #f8d030;
+  color: #000;
+}
+.psychic {
+  background: #f85888;
+}
+.ice {
+  background: #98d8d8;
+  color: #000;
+}
+.dragon {
+  background: #7038f8;
+}
+.dark {
+  background: #705848;
+}
+.fairy {
+  background: #ee99ac;
+}
+.normal {
+  background: #a8a878;
+}
+.fighting {
+  background: #c03028;
+}
+.poison {
+  background: #a040a0;
+}
+.ground {
+  background: #e0c068;
+  color: #000;
+}
+.flying {
+  background: #a890f0;
+}
+.bug {
+  background: #a8b820;
+}
+.rock {
+  background: #b8a038;
+}
+.ghost {
+  background: #705898;
+}
+.steel {
+  background: #b8b8d0;
+  color: #000;
 }
 
 /* STATS */
@@ -87,61 +166,41 @@ button:hover {
   text-align: left;
 }
 
-#stats h3 {
-  text-align: center;
-  margin-bottom: 5px;
+.stat {
+  margin-bottom: 6px;
 }
 
-#stats p {
-  background: #f2f2f2;
-  padding: 5px;
-  margin: 3px 0;
-  border-radius: 5px;
-  font-size: 13px;
+.barra {
+  height: 8px;
+  background: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progresso {
+  height: 100%;
+  background: #4caf50;
+  width: 0;
+  transition: 0.5s;
 }
 
 /* ERRO */
 #erro {
   color: white;
-  background: #ff3b3b;
+  background: red;
   padding: 8px;
   border-radius: 8px;
   margin-top: 10px;
 }
 
-/* ESCONDER */
-.oculto {
-  display: none;
-}
-
-/* TELAS MAIORES (DESKTOP) */
-@media (min-width: 768px) {
-  .container {
-    max-width: 500px;
-    padding: 30px;
-  }
-
-  h1 {
-    font-size: 28px;
-  }
-
+/* RESPONSIVO */
+@media (max-width: 480px) {
   .busca {
-    flex-direction: row;
+    flex-direction: column;
   }
 
-  input {
-    width: 70%;
-  }
-
+  input,
   button {
-    width: 30%;
-  }
-
-  #resultado img {
-    width: 200px;
-  }
-
-  #stats p {
-    font-size: 14px;
+    width: 100%;
   }
 }

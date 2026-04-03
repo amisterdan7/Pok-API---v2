@@ -46,8 +46,15 @@ function mostrarPokemon(dados) {
   nome.textContent = dados.name;
 
   // IMAGEM (HD)
-  imagem.src = dados.sprites.other["official-artwork"].front_default;
+  const img =
+    dados.sprites.other["official-artwork"].front_default ||
+    dados.sprites.front_default;
 
+  imagem.src = img;
+
+  imagem.onerror = () => {
+    imagem.src = "";
+  };
   //  TIPOS
   tipos.innerHTML = "";
   dados.types.forEach((tipoInfo) => {

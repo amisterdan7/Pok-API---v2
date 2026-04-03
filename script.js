@@ -1,4 +1,3 @@
-
 const input = document.querySelector("#inputPokemon");
 const botao = document.querySelector("#btnBuscar");
 
@@ -9,10 +8,10 @@ const tipos = document.querySelector("#tipos");
 const stats = document.querySelector("#stats");
 const erro = document.querySelector("#erro");
 
-//  EVENTO 
+//  EVENTO
 botao.addEventListener("click", buscarPokemon);
 
-// FUNÇÃO PRINCIPAL 
+// FUNÇÃO PRINCIPAL
 async function buscarPokemon() {
   const valor = input.value.trim().toLowerCase();
 
@@ -25,7 +24,6 @@ async function buscarPokemon() {
   limparTela();
 
   try {
-    
     const url = `https://pokeapi.co/api/v2/pokemon/${valor}`;
 
     const resposta = await fetch(url);
@@ -38,22 +36,21 @@ async function buscarPokemon() {
     const dados = await resposta.json();
 
     mostrarPokemon(dados);
-
   } catch (e) {
     mostrarErro(e.message);
   }
 }
 
-// MOSTRAR POKÉMON 
+// MOSTRAR POKÉMON
 function mostrarPokemon(dados) {
   nome.textContent = dados.name;
 
   // IMAGEM (HD)
-  imagem.src = dados.sprites.other['official-artwork'].front_default;
+  imagem.src = dados.sprites.other["official-artwork"].front_default;
 
   //  TIPOS
   tipos.innerHTML = "";
-  dados.types.forEach(tipoInfo => {
+  dados.types.forEach((tipoInfo) => {
     const span = document.createElement("span");
     span.textContent = tipoInfo.type.name;
     tipos.appendChild(span);
@@ -61,7 +58,7 @@ function mostrarPokemon(dados) {
 
   // STATS
   stats.innerHTML = "<h3>Stats:</h3>";
-  dados.stats.forEach(stat => {
+  dados.stats.forEach((stat) => {
     const p = document.createElement("p");
     p.textContent = `${stat.stat.name}: ${stat.base_stat}`;
     stats.appendChild(p);
@@ -71,13 +68,13 @@ function mostrarPokemon(dados) {
   areaResultado.classList.remove("oculto");
 }
 
-// MOSTRAR ERRO 
+// MOSTRAR ERRO
 function mostrarErro(msg) {
   erro.textContent = msg;
   erro.classList.remove("oculto");
 }
 
-//LIMPAR TELA 
+//LIMPAR TELA
 function limparTela() {
   areaResultado.classList.add("oculto");
   erro.classList.add("oculto");

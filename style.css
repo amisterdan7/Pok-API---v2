@@ -2,67 +2,146 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", sans-serif;
 }
 
 body {
-  background: #f2f2f2;
+  background: linear-gradient(135deg, #ff1c1c, #b30000);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 10px;
 }
 
+/* CONTAINER */
 .container {
-  background: white;
+  background: #fff;
+  width: 100%;
+  max-width: 350px;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 20px;
   text-align: center;
-  width: 320px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border: 5px solid #000;
 }
 
+/* TÍTULO */
+h1 {
+  color: #ff1c1c;
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+
+/* BUSCA */
 .busca {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   margin-bottom: 15px;
 }
 
 input {
-  padding: 8px;
-  width: 70%;
+  padding: 10px;
+  width: 100%;
+  border: 2px solid #000;
+  border-radius: 10px;
+  font-weight: bold;
 }
 
 button {
-  padding: 8px;
+  padding: 10px;
+  background: #ffcc00;
+  border: 2px solid #000;
+  border-radius: 10px;
   cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
 }
 
+button:hover {
+  background: #ffdb4d;
+  transform: scale(1.03);
+}
+
+/* IMAGEM */
 #resultado img {
-  width: 150px;
+  width: 140px;
+  margin: 10px 0;
 }
 
+/* TIPOS */
 #tipos span {
   display: inline-block;
-  margin: 5px;
+  margin: 4px;
   padding: 5px 10px;
-  background: #ddd;
-  border-radius: 5px;
+  border-radius: 20px;
+  background: #333;
+  color: white;
+  font-size: 12px;
 }
 
+/* STATS */
 #stats {
   margin-top: 10px;
   text-align: left;
 }
 
-#stats p {
-  font-size: 14px;
-  margin: 3px 0;
+#stats h3 {
+  text-align: center;
+  margin-bottom: 5px;
 }
 
+#stats p {
+  background: #f2f2f2;
+  padding: 5px;
+  margin: 3px 0;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+/* ERRO */
+#erro {
+  color: white;
+  background: #ff3b3b;
+  padding: 8px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+/* ESCONDER */
 .oculto {
   display: none;
 }
 
-#erro {
-  color: red;
-  margin-top: 10px;
+/* TELAS MAIORES (DESKTOP) */
+@media (min-width: 768px) {
+  .container {
+    max-width: 500px;
+    padding: 30px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .busca {
+    flex-direction: row;
+  }
+
+  input {
+    width: 70%;
+  }
+
+  button {
+    width: 30%;
+  }
+
+  #resultado img {
+    width: 200px;
+  }
+
+  #stats p {
+    font-size: 14px;
+  }
 }

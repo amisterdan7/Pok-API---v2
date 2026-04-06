@@ -53,7 +53,7 @@ function mostrarPokemon(dados) {
   imagem.src = img;
 
   imagem.onerror = () => {
-    imagem.src = "";
+    imagem.src = "Captura de tela_6-4-2026_183614_.jpeg";
   };
   
   // Ocultar a imagem enquanto não for carregada

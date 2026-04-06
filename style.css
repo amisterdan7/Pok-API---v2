@@ -13,6 +13,9 @@ body {
   min-height: 100vh;
 }
 
+#imagem{
+  display: none;
+}
 /* CONTAINER */
 .container {
   background: #fff;

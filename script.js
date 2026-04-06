@@ -55,6 +55,14 @@ function mostrarPokemon(dados) {
   imagem.onerror = () => {
     imagem.src = "Captura de tela_6-4-2026_183614_.jpeg";
   };
+  
+  // Ocultar a imagem enquanto não for carregada
+  imagem.style.display = "none";
+  imagem.onload = () => {
+    imagem.style.display = "block";
+  };
+
+
   //  TIPOS
   tipos.innerHTML = "";
   dados.types.forEach((tipoInfo) => {

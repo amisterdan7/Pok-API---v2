@@ -11,6 +11,12 @@ const erro = document.querySelector("#erro");
 //  EVENTO
 botao.addEventListener("click", buscarPokemon);
 
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    buscarPokemon();
+  }
+});
+
 // FUNÇÃO PRINCIPAL
 async function buscarPokemon() {
   const valor = input.value.trim().toLowerCase();
@@ -55,13 +61,12 @@ function mostrarPokemon(dados) {
   imagem.onerror = () => {
     imagem.src = "Captura de tela_6-4-2026_183614_.jpeg";
   };
-  
+
   // Ocultar a imagem enquanto não for carregada
   imagem.style.display = "none";
   imagem.onload = () => {
     imagem.style.display = "block";
   };
-
 
   //  TIPOS
   tipos.innerHTML = "";

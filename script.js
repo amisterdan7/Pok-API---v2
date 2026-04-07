@@ -76,7 +76,7 @@ function mostrarPokemon(dados) {
     tipos.appendChild(span);
   });
 
-  // STATS
+ 
   stats.innerHTML = "<h3>Stats:</h3>";
   dados.stats.forEach((stat) => {
     const p = document.createElement("p");

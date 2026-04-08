@@ -49,9 +49,18 @@ async function buscarPokemon() {
 
 // MOSTRAR POKÉMON
 function mostrarPokemon(dados) {
+
+  // Mudar cor do fundo de acordo com o tipo principal do pokémon
+const tipoPrincipal = dados.types[0].type.name;
+
+// Limpa fundo antigo
+document.body.className = "";
+
+// Aplica novo fundo
+document.body.classList.add(`fundo-${tipoPrincipal}`);
   nome.textContent = dados.name;
 
-  // IMAGEM (HD)
+  // Imagem
   const img =
     dados.sprites.other["official-artwork"].front_default ||
     dados.sprites.front_default;

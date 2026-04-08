@@ -4,9 +4,32 @@ const botao = document.querySelector("#btnBuscar");
 const areaResultado = document.querySelector("#resultado");
 const nome = document.querySelector("#nome");
 const imagem = document.querySelector("#imagem");
+const imageContainer = document.querySelector("#imageContainer");
 const tipos = document.querySelector("#tipos");
 const stats = document.querySelector("#stats");
 const erro = document.querySelector("#erro");
+
+// MAPA DE CORES DOS TIPOS
+const coresDosTipos = {
+  fire: "#f08030",
+  water: "#6890f0",
+  grass: "#78c850",
+  electric: "#f8d030",
+  psychic: "#f85888",
+  ice: "#98d8d8",
+  dragon: "#7038f8",
+  dark: "#705848",
+  fairy: "#ee99ac",
+  normal: "#a8a878",
+  fighting: "#c03028",
+  poison: "#a040a0",
+  ground: "#e0c068",
+  flying: "#a890f0",
+  bug: "#a8b820",
+  rock: "#b8a038",
+  ghost: "#705898",
+  steel: "#b8b8d0"
+};
 
 //  EVENTO
 botao.addEventListener("click", buscarPokemon);
@@ -49,18 +72,9 @@ async function buscarPokemon() {
 
 // MOSTRAR POKÉMON
 function mostrarPokemon(dados) {
-
-  // Mudar cor do fundo de acordo com o tipo principal do pokémon
-const tipoPrincipal = dados.types[0].type.name;
-
-// Limpa fundo antigo
-document.body.className = "";
-
-// Aplica novo fundo
-document.body.classList.add(`fundo-${tipoPrincipal}`);
   nome.textContent = dados.name;
 
-  // Imagem
+  // IMAGEM (HD)
   const img =
     dados.sprites.other["official-artwork"].front_default ||
     dados.sprites.front_default;
@@ -71,7 +85,7 @@ document.body.classList.add(`fundo-${tipoPrincipal}`);
     imagem.src = "Captura de tela_6-4-2026_183614_.jpeg";
   };
 
-  // Ocultar a imagem enquanto não for carregada
+  // OCULTAR A IMAGEM ENQUANTO NÃO FOR CARREGADA
   imagem.style.display = "none";
   imagem.onload = () => {
     imagem.style.display = "block";
@@ -85,7 +99,11 @@ document.body.classList.add(`fundo-${tipoPrincipal}`);
     tipos.appendChild(span);
   });
 
- 
+  // APLICAR COR DO FUNDO BASEADO NO TIPO PRINCIPAL
+  const tipoPrincipal = dados.types[0].type.name;
+  const corDoTipo = coresDosTipos[tipoPrincipal] || "#f0f0f0";
+  imageContainer.style.backgroundColor = corDoTipo;
+
   stats.innerHTML = "<h3>Stats:</h3>";
   dados.stats.forEach((stat) => {
     const p = document.createElement("p");

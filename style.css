@@ -109,6 +109,15 @@ button:hover {
 }
 
 /* IMAGEM */
+.image-container {
+  display: inline-block;
+  padding: 30px 40px;
+  border-radius: 20px;
+  background-color: #f0f0f0;
+  margin: 15px 0;
+  transition: background-color 0.3s ease;
+}
+
 #resultado img {
   width: 180px;
   animation: aparecer 0.5s ease;

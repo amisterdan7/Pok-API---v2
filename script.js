@@ -126,5 +126,6 @@ function limparTela() {
   areaResultado.classList.add("oculto");
   erro.classList.add("oculto");
   tipos.innerHTML = "";
-  stats.innerHTML = "";
+  stats.innerHTML
+
 }

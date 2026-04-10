@@ -28,7 +28,7 @@ const coresDosTipos = {
   bug: "#a8b820",
   rock: "#b8a038",
   ghost: "#705898",
-  steel: "#b8b8d0"
+  steel: "#b8b8d0",
 };
 
 //  EVENTO
@@ -72,6 +72,9 @@ async function buscarPokemon() {
 
 // MOSTRAR POKÉMON
 function mostrarPokemon(dados) {
+  erro.classList.add("oculto");
+  erro.textContent = "";
+
   nome.textContent = dados.name;
 
   // IMAGEM (HD)
@@ -95,7 +98,8 @@ function mostrarPokemon(dados) {
   tipos.innerHTML = "";
   dados.types.forEach((tipoInfo) => {
     const span = document.createElement("span");
-    span.textContent = tipoInfo.type.name;
+    span.textContent = capitalize(tipoInfo.type.name);
+    span.className = tipoInfo.type.name;
     tipos.appendChild(span);
   });
 
@@ -106,13 +110,31 @@ function mostrarPokemon(dados) {
 
   stats.innerHTML = "<h3>Stats:</h3>";
   dados.stats.forEach((stat) => {
-    const p = document.createElement("p");
-    p.textContent = `${stat.stat.name}: ${stat.base_stat}`;
-    stats.appendChild(p);
+    const statContainer = document.createElement("div");
+    statContainer.className = "stat";
+
+    const statLabel = document.createElement("span");
+    statLabel.textContent = `${capitalize(stat.stat.name)}: ${stat.base_stat}`;
+
+    const barra = document.createElement("div");
+    barra.className = "barra";
+
+    const progresso = document.createElement("div");
+    progresso.className = "progresso";
+    const progressoValue = Math.min(stat.base_stat, 100);
+    progresso.style.width = `${progressoValue}%`;
+
+    barra.appendChild(progresso);
+    statContainer.append(statLabel, barra);
+    stats.appendChild(statContainer);
   });
 
   // MOSTRAR RESULTADO
   areaResultado.classList.remove("oculto");
+}
+
+function capitalize(text) {
+  return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
 // MOSTRAR ERRO
@@ -125,7 +147,7 @@ function mostrarErro(msg) {
 function limparTela() {
   areaResultado.classList.add("oculto");
   erro.classList.add("oculto");
+  erro.textContent = "";
   tipos.innerHTML = "";
-  stats.innerHTML
-
+  stats.innerHTML = "";
 }

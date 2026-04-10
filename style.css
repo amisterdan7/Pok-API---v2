@@ -13,7 +13,7 @@ body {
   min-height: 100vh;
 }
 
-#imagem{
+#imagem {
   display: none;
 }
 
@@ -22,14 +22,12 @@ body {
   height: auto;
   margin: 0 auto 16px;
   display: block;
-  opacity: 1.0;
+  opacity: 1;
   background: transparent;
 }
 
-
 /* CONTAINER */
 .container {
-  
   background: #fff;
   width: 100%;
   max-width: 750px;
@@ -44,7 +42,6 @@ body {
 .container {
   position: relative;
 }
-
 
 .container::before {
   content: "";
@@ -106,6 +103,19 @@ button {
 
 button:hover {
   transform: scale(1.05);
+}
+
+input:focus,
+button:focus {
+  outline: 3px solid #ffcc00;
+  outline-offset: 3px;
+}
+
+.busca label {
+  display: block;
+  margin-bottom: 8px;
+  text-align: left;
+  font-weight: 700;
 }
 
 /* IMAGEM */
@@ -209,11 +219,17 @@ button:hover {
 }
 
 .stat {
+  margin-bottom: 12px;
+}
+
+.stat span {
+  display: block;
   margin-bottom: 6px;
+  font-weight: 700;
 }
 
 .barra {
-  height: 8px;
+  height: 10px;
   background: #ddd;
   border-radius: 10px;
   overflow: hidden;
@@ -245,4 +261,8 @@ button:hover {
   button {
     width: 100%;
   }
+}
+
+.oculto {
+  display: none;
 }
